@@ -4,8 +4,21 @@ const nextConfig: NextConfig = {
   /* config options here */
   reactCompiler: true,
   images: {
-    domains: ["flowbite.s3.amazonaws.com", ' images.unsplash.com']
-  }
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "flowbite.s3.amazonaws.com",
+        port: "",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
+        port: "",
+        pathname: "/**",
+      },
+    ],
+  },
 };
 
 export default nextConfig;
