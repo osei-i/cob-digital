@@ -115,8 +115,9 @@ export const CardItem = ({
 }) => {
   const [isMouseEntered] = useMouseEnter();
 
-  // Determine if we need to wrap the Tag in motion
-  const MotionTag = typeof Tag === "string" ? (motion as any)[Tag] : motion(Tag);
+  // Using a specific type cast here helps the TypeScript compiler 
+  // understand that this will always be a valid motion component.
+  const MotionTag = motion(Tag as any);
 
   return (
     <MotionTag
@@ -129,10 +130,9 @@ export const CardItem = ({
         rotateY: isMouseEntered ? rotateY : 0,
         rotateZ: isMouseEntered ? rotateZ : 0,
       }}
-      // Transition settings for the "pop" effect
       transition={{
         duration: 0.3,
-        ease: "easeOut"
+        ease: "easeOut",
       }}
       {...rest}
     >
